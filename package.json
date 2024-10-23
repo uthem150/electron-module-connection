@@ -1,0 +1,126 @@
+{
+  "name": "react-electron-app",
+  "version": "0.1.1",
+  "private": true,
+  "dependencies": {
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@stackflow/core": "^1.1.0",
+    "@stackflow/plugin-basic-ui": "^1.10.0",
+    "@stackflow/plugin-renderer-basic": "^1.1.13",
+    "@stackflow/react": "^1.4.0",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.18.114",
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.1",
+    "electron-updater": "^6.3.9",
+    "emotion": "^11.0.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-config-react-app": "^7.0.1",
+    "eslint-plugin-prettier": "^5.2.1",
+    "i18next": "^23.16.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-i18next": "^15.0.3",
+    "react-scripts": "5.0.1",
+    "sass": "^1.80.3",
+    "typescript": "^4.9.5",
+    "web-vitals": "^2.1.4"
+  },
+  "main": "dist/app/Main.js",
+  "homepage": "./",
+  "build": {
+    "appId": "com.react-electron.app",
+    "productName": "react-electron",
+    "copyright": "Copyright © 2024 uthem150",
+    "files": [
+      "build/**/*",
+      "dist/**/*",
+      "node_modules/**/*",
+      "package.json"
+    ],
+    "directories": {
+      "buildResources": "build",
+      "output": "./output"
+    },
+    "extraMetadata": {
+      "main": "dist/app/Main.js"
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "uthem150",
+        "repo": "react-electron-app",
+        "private": true,
+        "token": "${env.GH_TOKEN}"
+      }
+    ],
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "artifactName": "${productName}-Setup-${version}.${ext}"
+    },
+    "mac": {
+      "target": [
+        "dmg"
+      ],
+      "artifactName": "${productName}-${version}.${ext}"
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "artifactName": "${productName}-${version}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
+  },
+  "scripts": {
+    "start": "concurrently \"yarn react-start\" \"wait-on http://localhost:3000 && yarn electron-start\"",
+    "build": "tsc && yarn react-build && electron-builder",
+    "react-start": "cross-env BROWSER=none react-scripts start",
+    "react-build": "react-scripts build",
+    "electron-start": "tsc && electron .",
+    "deploy": "cross-env GH_TOKEN=$GH_TOKEN electron-builder --publish always",
+    "release": "node scripts/deploy.js"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.13.0",
+    "concurrently": "^9.0.1",
+    "cross-env": "^7.0.3",
+    "electron": "^33.0.1",
+    "electron-builder": "^25.1.8",
+    "eslint": "^9.13.0",
+    "eslint-plugin-react": "^7.37.1",
+    "globals": "^15.11.0",
+    "prettier": "^3.3.3",
+    "typescript-eslint": "^8.10.0",
+    "wait-on": "^8.0.1"
+  }
+}

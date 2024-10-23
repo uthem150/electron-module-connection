@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "module": "CommonJS",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": false, // 컴파일할 때, 변환된 JS파일 생성하도록 (true이면 검사만 수행하고, 컴파일 과정에서 JS파일을 생성하지 않음)
+    "jsx": "react-jsx",
+    "baseUrl": ".", // 모듈 해석의 기준이 되는 경로 설정
+    "paths": { // 모듈의 경로 별칭 정의
+      "@/*": ["src/*"],
+      "@components/*": ["src/components/*"],
+      "@assets": ["src/assets/*"],
+      "@utils": ["src/utils/*"],
+    },
+    "outDir": "./dist" // 변환될 JS파일이 저장될 디렉토리
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx", "app/*"], // 컴파일할 파일 포함
+  "exclude": ["node_modules"] // 컴파일에서 제외할 파일
+}
