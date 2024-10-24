@@ -1,6 +1,7 @@
 import { AppScreen } from '@stackflow/plugin-basic-ui';
 import { useFlow } from '../stackflow';
 import { useCallback } from 'react';
+import Payment from '../components/common/modules/Payment';
 
 const MainActivity = () => {
 	const { push } = useFlow();
@@ -26,6 +27,9 @@ const MainActivity = () => {
 			</button>
 
 			<button onClick={onClickSave}>저장</button>
+
+			<h1>웹소켓 연결</h1>
+			<Payment />
 		</AppScreen>
 	);
 };
